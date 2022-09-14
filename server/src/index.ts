@@ -2,7 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
 
-import { ProductRoutes } from './controllers/ProductController';
+import { ProductRoutes } from './routes/ProductRoutes';
+import { UserRoutes } from './routes/UserRoutes';
 
 const app = express();
 const port = 8080;
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 new ProductRoutes(app, prisma);
+new UserRoutes(app, prisma);
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);

@@ -1,19 +1,17 @@
-import type { Request, Response, Application } from 'express';
+import type { Request, Response } from 'express';
 import type { PrismaClient } from '@prisma/client';
 
-export { ProductRoutes };
+export { ProductController };
 
 class ProductController {
   constructor(private readonly prisma: PrismaClient) {}
 
-  /* TODO - replace Promise<any> */
-
-  GetProducts = async (res: Response): Promise<any> => {
+  GetProducts = async (res: Response): Promise<void> => {
     const products = await this.prisma.product.findMany();
     res.json(products);
   };
 
-  GetProduct = async (req: Request, res: Response): Promise<any> => {
+  GetProduct = async (req: Request, res: Response): Promise<void> => {
     const params = req.params;
     await this.prisma.product
       .findFirst({
@@ -31,7 +29,7 @@ class ProductController {
       });
   };
 
-  CreateProduct = async (req: Request, res: Response): Promise<any> => {
+  CreateProduct = async (req: Request, res: Response): Promise<void> => {
     const { name, description, price, image, sizes, tabtype } = req.body;
 
     await this.prisma.product
@@ -49,13 +47,4 @@ class ProductController {
         res.json(newProduct);
       });
   };
-}
-
-class ProductRoutes extends ProductController {
-  constructor(app: Application, prisma: PrismaClient) {
-    super(prisma);
-    app.get('/api/products', this.GetProducts);
-    app.post('/api/products', this.CreateProduct);
-    app.get('/api/products/:name', this.GetProduct);
-  }
 }
