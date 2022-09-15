@@ -7,7 +7,7 @@ class ProductController {
   constructor(private readonly prisma: PrismaClient) {}
 
   // PR = product response
-  private PR({ error, product }: { error?: string | null; product?: Product | Product[] | null }) {
+  private PR({ error, product }: { error?: string; product?: Product | Product[] }) {
     return {
       error: error ? error : null,
       data: product ? product : null,

@@ -9,7 +9,7 @@ export { UserController };
 class UserController {
   constructor(private readonly prisma: PrismaClient) {}
 
-  private UR({ error, user }: { error?: string | null; user?: User | null }) {
+  private UR({ error, user }: { error?: string; user?: User }) {
     return {
       error: error ? error : null,
       data: user ? user : null,
