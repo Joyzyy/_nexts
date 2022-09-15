@@ -9,8 +9,8 @@ class ProductRoutes extends ProductController {
   constructor(app: Application, prisma: PrismaClient) {
     super(prisma);
 
-    app.get('/api/products', this.GetProducts);
-    app.get('/api/products/:name', this.GetProduct);
-    app.post('/api/products', this.CreateProduct);
+    app.route('/api/products').get(this.GetProducts);
+    app.route('/api/products/:name').get(this.GetProduct);
+    app.route('/api/products').post(this.CreateProduct);
   }
 }

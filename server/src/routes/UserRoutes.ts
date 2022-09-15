@@ -10,5 +10,6 @@ class UserRoutes extends UserController {
 
     app.route('/api/user/:id').get(this.GetUser);
     app.route('/api/createUser').post(this.CreateUser);
+    app.route('/api/updateUser').patch(this.UpdateUser);
   }
 }

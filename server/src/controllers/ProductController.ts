@@ -1,14 +1,30 @@
 import type { Request, Response } from 'express';
-import type { PrismaClient } from '@prisma/client';
+import type { PrismaClient, Product } from '@prisma/client';
 
 export { ProductController };
 
 class ProductController {
   constructor(private readonly prisma: PrismaClient) {}
 
-  GetProducts = async (res: Response): Promise<void> => {
-    const products = await this.prisma.product.findMany();
-    res.json(products);
+  // PR = product response
+  private PR({ error, product }: { error?: string | null; product?: Product | Product[] | null }) {
+    return {
+      error: error ? error : null,
+      data: product ? product : null,
+    };
+  }
+
+  GetProducts = async (req: Request, res: Response): Promise<void> => {
+    await this.prisma.product
+      .findMany()
+      .then((products) => {
+        products
+          ? res.json(this.PR({ product: products }))
+          : res.json(this.PR({ error: 'No products found' }));
+      })
+      .catch((err) => {
+        res.status(500).json(this.PR({ error: err }));
+      });
   };
 
   GetProduct = async (req: Request, res: Response): Promise<void> => {
@@ -20,12 +36,10 @@ class ProductController {
         },
       })
       .then((product) => {
-        product ? res.json(product) : res.json("Product doesn't exist");
+        product ? res.json(this.PR({ product })) : res.json(this.PR({ error: 'No product found' }));
       })
-      .catch(() => {
-        res.json({
-          error: 'We have an error!',
-        });
+      .catch((err) => {
+        res.status(500).json(this.PR({ error: err }));
       });
   };
 
@@ -44,7 +58,12 @@ class ProductController {
         },
       })
       .then((newProduct) => {
-        res.json(newProduct);
+        newProduct
+          ? res.json(this.PR({ product: newProduct }))
+          : res.json(this.PR({ error: 'Failed to create product' }));
+      })
+      .catch((err) => {
+        res.status(500).json(this.PR({ error: err }));
       });
   };
 }

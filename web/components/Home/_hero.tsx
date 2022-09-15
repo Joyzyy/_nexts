@@ -1,10 +1,15 @@
+import { useRef } from 'react';
 import { Container, Stack, Heading, Text, Button, Image } from '@chakra-ui/react';
+import { useIO } from '@/hooks/useIntersectionObserver';
 
 export { _hero };
 
 function _hero() {
+  const containerRef = useRef(null);
+  const { isVisible } = useIO(containerRef);
+
   return (
-    <Container maxW={'5xl'} mt={4}>
+    <Container maxW={'5xl'} mt={4} ref={containerRef}>
       <Stack
         textAlign={'center'}
         align={'center'}
