@@ -10,10 +10,14 @@ import {
   Flex,
   Text,
   useColorMode,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { FaSun, FaMoon } from 'react-icons/fa';
+import { FaSun, FaMoon, FaCartPlus } from 'react-icons/fa';
 import { AppbarConstants } from '@/constants/Appbar';
 import { useAuth } from '@/hooks/useAuth';
+import { useRef } from 'react';
+
+import { ___drawer } from './___drawer';
 
 export { __menu };
 
@@ -44,10 +48,18 @@ function ___isLoggedInLinks({ isLoggedIn }: { isLoggedIn: boolean | undefined })
 
 function __menu() {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { loggedIn } = useAuth();
+  const btnRef = useRef(null);
 
   return (
     <Menu>
+      <Button variant={'ghost'} ref={btnRef} onClick={onOpen}>
+        <FaCartPlus size={'2em'} />
+      </Button>
+
+      <___drawer btnRef={btnRef} isOpen={isOpen} onClose={onClose} />
+
       <MenuButton as={Button} rounded={'full'} variant={'link'} cursor={'pointer'} minW={0}>
         <Avatar size={'sm'} />
       </MenuButton>

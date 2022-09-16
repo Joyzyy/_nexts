@@ -5,12 +5,13 @@ export { _layout };
 
 type Props = {
   tabsContent: Array<{
-    tabType: 'NEW' | 'SPECIAL' | 'SALE';
-    category: string;
+    id: string;
+    name: string;
+    description: string;
+    price: number;
     image: string;
     sizes: number[];
-    name: string;
-    price: number;
+    tabtype: string;
   }>;
 };
 

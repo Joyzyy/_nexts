@@ -16,4 +16,4 @@ export type ProductResponse = {
   data: Product | Product[];
 };
 
-export const ProductContext = createContext({} as Product);
+export const ProductContext = createContext({} as Product[]);

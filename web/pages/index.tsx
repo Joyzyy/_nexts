@@ -1,16 +1,25 @@
 import type { NextPage, GetServerSideProps } from 'next';
 import axios from 'axios';
+import { ProductContext } from '@/lib/product';
 import { HomeC } from '@/components/Home';
 
 import { ProductResponse } from '@/lib/product';
 
 const Home: NextPage<ProductResponse> = ({ error, data }) => {
   console.log(error, data);
-  return <HomeC />;
+  return (
+    <ProductContext.Provider value={data}>
+      <HomeC />
+    </ProductContext.Provider>
+  );
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const request = (await axios.get<ProductResponse>('http://localhost:8080/api/products')).data;
+  const request = (
+    await axios.get<ProductResponse>(`
+    ${process.env.NEXT_PUBLIC_API}/api/products
+  `)
+  ).data;
 
   return {
     props: {
