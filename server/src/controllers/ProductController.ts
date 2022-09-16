@@ -44,12 +44,13 @@ class ProductController {
   };
 
   CreateProduct = async (req: Request, res: Response): Promise<void> => {
-    const { name, description, price, image, sizes, tabtype } = req.body;
+    const { name, description, category, price, image, sizes, tabtype } = req.body;
 
     await this.prisma.product
       .create({
         data: {
           name,
+          category,
           description,
           price,
           image,

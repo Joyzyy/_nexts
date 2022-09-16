@@ -5,7 +5,7 @@ import { MdAddShoppingCart } from 'react-icons/md';
 export { Card };
 
 type Props = {
-  tabType: 'NEW' | 'SPECIAL' | 'SALE';
+  tabtype: string;
   category: string;
   image: string;
   sizes: number[];
@@ -29,7 +29,7 @@ function Card(props: Props) {
         <Box p={6}>
           <Box display={'flex'} alignItems={'baseline'}>
             <Badge borderRadius={'fill'} px={2} colorScheme={'blue'}>
-              {props.tabType}
+              {props.tabtype}
             </Badge>
 
             <Box

@@ -1,5 +1,5 @@
 import { _hero } from './_hero';
-import { _tabs } from './Tabs';
+import { _tabs } from './_tabs';
 
 export { HomeC };
 
