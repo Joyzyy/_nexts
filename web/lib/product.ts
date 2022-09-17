@@ -14,7 +14,13 @@ type Product = {
 
 export type ProductResponse = {
   error: string;
-  data: Product | Product[];
+  data: Product[];
 };
 
-export const ProductContext = createContext({} as Product[]);
+export type ProductResponseIndividual = {
+  error: string;
+  data: Product;
+};
+
+export const ProductContext = createContext({} as ProductResponse);
+export const ProductContextIndividual = createContext({} as ProductResponseIndividual);

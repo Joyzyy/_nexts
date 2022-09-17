@@ -24,13 +24,13 @@ function ___drawer({ btnRef, isOpen, onClose }: Props) {
       <DrawerOverlay />
       <DrawerContent>
         <DrawerCloseButton />
-        <DrawerHeader>Create your account</DrawerHeader>
+        <DrawerHeader>Your shopping cart</DrawerHeader>
         <DrawerBody></DrawerBody>
         <DrawerFooter>
           <Button variant='outline' mr={3} onClick={onClose}>
             Cancel
           </Button>
-          <Button colorScheme='blue'>Save</Button>
+          <Button colorScheme='blue'>To checkout</Button>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

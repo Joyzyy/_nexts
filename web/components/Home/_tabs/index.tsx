@@ -9,11 +9,12 @@ import { _component } from './_component';
 export { _tabs };
 
 const _tabs: React.FC = () => {
-  const data = useContext(ProductContext);
-  const names = new Array('test', 'test23', 'FEATURED');
+  const { error, data } = useContext(ProductContext);
+  const names = new Array('NEW', 'BEST SELLERS', 'FEATURED');
 
   return (
     <Box mt={12}>
+      {error && <Box>There was an error.</Box>}
       <_component
         name={names}
         children={names.map((name, index) => (
