@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Container, Box, Flex, Stack, Text, Button } from '@chakra-ui/react';
+import { Box, Flex, Stack, Text, Button, useColorModeValue } from '@chakra-ui/react';
 
 export { _component };
 
@@ -13,7 +13,7 @@ type Props = {
 function _component(props: Props) {
   return (
     <Box
-      backgroundColor={'blackAlpha.300'}
+      backgroundColor={useColorModeValue('blackAlpha.100', 'blackAlpha.300')}
       rounded={'xl'}
       minWidth={{
         base: '100%',
@@ -27,7 +27,7 @@ function _component(props: Props) {
             fontWeight={'semibold'}
             fontSize={12}
             colorScheme={'whiteAlpha'}
-            color={'whiteAlpha.500'}
+            color={useColorModeValue('blackAlpha.900', 'whiteAlpha.500')}
           >
             {props.category}
           </Text>
@@ -38,7 +38,11 @@ function _component(props: Props) {
             {props.description}
           </Text>
           <Link href={props.learnMore}>
-            <Button variant={'ghost'} colorScheme={'blue'} color={'blue.400'}>
+            <Button
+              variant={'ghost'}
+              colorScheme={'blue'}
+              color={useColorModeValue('blue.900', 'blue.400')}
+            >
               Learn more →
             </Button>
           </Link>

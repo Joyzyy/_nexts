@@ -3,13 +3,23 @@ import { _component } from './_component';
 
 export { _layout };
 
-function _layout() {
+type Props = {
+  _componentLayout: Array<{
+    category: string;
+    title: string;
+    description: string;
+    learnMore: string;
+  }>;
+};
+
+function _layout({ _componentLayout }: Props) {
   return (
     <Container
       maxWidth={{
         base: '4xl',
         xl: '8xl',
       }}
+      my={12}
     >
       <Flex
         justifyContent={{
@@ -29,25 +39,9 @@ function _layout() {
           xl: 18,
         }}
       >
-        <_component
-          category={'Category 1'}
-          title={'Title 1'}
-          description={'Description 1'}
-          learnMore={'/learn-more'}
-        />
-
-        <_component
-          category={'Category 2'}
-          title={'Title 2'}
-          description={'Description 2'}
-          learnMore={'/learn-more'}
-        />
-        <_component
-          category={'Category 3'}
-          title={'Title 3'}
-          description={'Description 3'}
-          learnMore={'/learn-more'}
-        />
+        {_componentLayout.map((category, index) => (
+          <_component key={index} {...category} />
+        ))}
       </Flex>
     </Container>
   );

@@ -1,7 +1,10 @@
 import { _layout } from './_layout';
+import { HomeConstants } from '@/constants/Home';
 
 export { _categories };
 
 function _categories() {
-  return <_layout />;
+  const { CategoriesConstants } = HomeConstants;
+
+  return <_layout _componentLayout={CategoriesConstants} />;
 }
