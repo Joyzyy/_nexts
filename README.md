@@ -4,12 +4,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Features
 - 💎 Next.js **12.2**
 - ⚛️ React.js **18**
+- ⚙️ ExpressJS - *backend*
 - 🔮 **Chakra-UI**: *for the general styling of components*
 - 🎁 **MongoDB**: *storing data in a cool way*
 - ⚙️ **Amazon S3 Bucket**: *storing images*
-- ⚙️ **GoLang** backend for blazing fast responses (~35ms/req)
 - 🌈 .prettier for consistent code style
-- ⚙️ ExpressJS - *backend*
 
 ## Motivation
 I wanted to learn all about front-end development, and during this project I can confidently say that I learned the following:
